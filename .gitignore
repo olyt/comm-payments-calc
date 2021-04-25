@@ -1,0 +1,54 @@
+#app
+node_modules/**/*
+.idea/**/*
+.idea/.gitignore
+.stylelintcache
+.stylelintcache;
+debug.log
+.prettierignore
+
+#client
+client/node_modules/**/*
+client/build/**/*
+# dependencies
+client/.pnp
+client.pnp.js
+# testing
+client/coverage
+# production
+client/documentation
+# misc
+client/.idea/**/*
+client/.DS_Store
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+client/npm-debug.log*
+client/.stylelintcache
+client/.stylelintcache;
+client/debug.log
+client/.prettierignore
+
+#server
+# dependencies
+server/node_modules/**/*
+server/.pnp
+server/.pnp.js
+# testing
+server/coverage
+# production
+server/build/**/*
+serverdocumentation
+# misc
+server/.idea/**/*
+server/.DS_Store
+server/.env.local
+server/.env.development.local
+server/.env.test.local
+server/.env.production.local
+server/npm-debug.log*
+server/yarn-debug.log*
+server/yarn-error.log*
+server/.stylelintcache
+server/.prettierignore

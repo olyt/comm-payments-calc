@@ -1,0 +1,43 @@
+{
+  "name": "comm-payments-calc",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "server": "npm start --prefix ./server",
+    "client": "npm start --prefix ./client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olyt/comm-payments-calc.git"
+  },
+  "keywords": [],
+  "author": "Oleksandr Lytovchenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olyt/comm-payments-calc/issues"
+  },
+  "homepage": "https://github.com/olyt/comm-payments-calc#readme",
+  "dependencies": {
+    "concurrently": "^6.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.2.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-config-standard-jsx": "^10.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.23.2",
+    "prettier": "2.2.1",
+    "stylelint": "^13.12.0",
+    "stylelint-config-recommended": "^4.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.10.0"
+  }
+}
