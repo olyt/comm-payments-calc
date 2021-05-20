@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const RegFeeRateSchema = new Schema({
+const FeeRateSchema = new Schema({
   name: {
+    type: String,
+    required: true,
+  },
+  displayName: {
     type: String,
     required: true,
   },
@@ -16,12 +20,16 @@ const RegFeeRateSchema = new Schema({
       lowRate: { type: Number },
       highRate: { type: Number },
       changeStep: { type: Number },
-      default: null,
     },
     multiLevel: {
-      subName: { type: String },
-      value: { type: Number },
-      default: null,
+      type: [
+        {
+          subName: String,
+          subDisplayName: String,
+          rateValue: Number,
+        },
+      ],
+      default: undefined,
     },
   },
   current: {
@@ -29,11 +37,7 @@ const RegFeeRateSchema = new Schema({
     required: true,
     default: true,
   },
-  twoLevelRate: {
-    type: Boolean,
-    default: false,
-  },
 });
 
-const RegFeeRate = mongoose.model('regFeeRate', RegFeeRateSchema);
-module.exports = RegFeeRate;
+const FeeRate = mongoose.model('feeRate', FeeRateSchema);
+module.exports = FeeRate;
