@@ -1,41 +1,45 @@
-const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const path = require('path');
-require('dotenv').config();
+require('dotenv').config({ path: './.env' });
 
-const feeRates = require('./routes/feeRate');
+process.on('uncaughtException', (err) => {
+  console.log(err.name, err.message);
+  console.log('UNCAUGHT EXCEPTION. Server shutting down');
+  process.exit(1);
+});
 
-const app = express();
+const app = require('./app');
 
-// Body parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// starting server
+const port = process.env.PORT || 5000;
 
-// DB Config
-const db = require('./config/keys').mongoURI;
-
-// Connect to MongoDB
+const DB = process.env.DATABASE.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
+);
 mongoose
-  .connect(db, {
+  .connect(DB, {
     useNewUrlParser: true,
+    useCreateIndex: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
   })
-  .then(() => console.log('MongoDB Connected'))
-  .catch((err) => console.log(err));
+  .then(() => console.log('DB connected'));
 
-// Use Routes
-// app.use("/api/configs", globalConfigs);
-app.use('/api/fee-rates', feeRates);
-
-// Set static folder
-app.use(express.static('client/build'));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+const server = app.listen(port, () => {
+  console.log(`Server running on port: ${port}`);
 });
 
-const port = process.env.PORT || 5000;
+process.on('unhandledRejection', (err) => {
+  console.log(err.name, err.message);
+  console.log('UNHANDLED REJECTION. Server shutting down');
+  server.close(() => {
+    process.exit(1);
+  });
+});
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+process.on('SIGTERM', () => {
+  console.log('Sigterm received. Shutting down gracefully!');
+  server.close(() => {
+    console.log('Process terminated!');
+  });
+});

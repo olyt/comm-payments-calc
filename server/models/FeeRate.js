@@ -5,39 +5,42 @@ const FeeRateSchema = new Schema({
   name: {
     type: String,
     required: true,
+    enum: {
+      values: ['energy', 'gas', 'cold-water', 'hot-water', 'flat-rent'],
+      message: "Name doesn't match any standard rates name",
+    },
   },
   displayName: {
     type: String,
     required: true,
+    enum: {
+      values: [
+        'Електроенергія',
+        'Газ',
+        'Холодна вода',
+        'Гаряча вода',
+        'Квартплата',
+      ],
+      message: "Display name doesn't match any standard rates name",
+    },
   },
-  date: {
+  createdAt: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
   rate: {
-    regValue: { type: Number },
-    twoStep: {
-      lowRate: { type: Number },
-      highRate: { type: Number },
-      changeStep: { type: Number },
-    },
-    multiLevel: {
-      type: [
-        {
-          subName: String,
-          subDisplayName: String,
-          rateValue: Number,
-        },
-      ],
-      default: undefined,
-    },
+    type: Number,
+    required: [true, 'Rate must have a value'],
   },
   current: {
     type: Boolean,
-    required: true,
     default: true,
+  },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
   },
 });
 
-const FeeRate = mongoose.model('feeRate', FeeRateSchema);
+const FeeRate = mongoose.model('FeeRate', FeeRateSchema);
 module.exports = FeeRate;
