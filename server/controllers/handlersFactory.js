@@ -42,9 +42,7 @@ exports.getOne = (Model, populateOptions) =>
 
     res.status(200).json({
       status: 'success',
-      data: {
-        doc,
-      },
+      data: doc,
     });
   });
 
@@ -54,9 +52,7 @@ exports.createOne = (Model) =>
 
     res.status(201).json({
       status: 'success',
-      data: {
-        doc,
-      },
+      data: doc,
     });
   });
 
@@ -70,9 +66,7 @@ exports.deleteOne = (Model) =>
 
     res.status(204).json({
       status: 'success',
-      data: {
-        tour: null,
-      },
+      data: null,
     });
   });
 
@@ -89,8 +83,6 @@ exports.updateOne = (Model) =>
 
     res.status(200).json({
       status: 'success',
-      data: {
-        doc: updatedDoc,
-      },
+      data: updatedDoc,
     });
   });

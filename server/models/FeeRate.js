@@ -1,13 +1,20 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const FeeRateSchema = new Schema({
+const FeeRateSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
     enum: {
-      values: ['energy', 'gas', 'cold-water', 'hot-water', 'flat-rent'],
-      message: "Name doesn't match any standard rates name",
+      values: [
+        'energy',
+        'gas',
+        'cold-water-in',
+        'cold-water-out',
+        'hot-water-in',
+        'hot-water-out',
+        'flat-rent',
+      ],
+      message: 'Name does not match any standard rates name',
     },
   },
   displayName: {
@@ -17,11 +24,13 @@ const FeeRateSchema = new Schema({
       values: [
         'Електроенергія',
         'Газ',
-        'Холодна вода',
-        'Гаряча вода',
+        'Підведення холодної води',
+        'Відведення холодної води',
+        'Підведення гарячої води',
+        'Відведення гарячої води',
         'Квартплата',
       ],
-      message: "Display name doesn't match any standard rates name",
+      message: 'Display name does not match any standard rates name',
     },
   },
   createdAt: {

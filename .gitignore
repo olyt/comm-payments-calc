@@ -52,4 +52,4 @@ server/yarn-debug.log*
 server/yarn-error.log*
 server/.stylelintcache
 server/.prettierignore
-server/.env
+server/*.env
